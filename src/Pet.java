@@ -1,11 +1,17 @@
-public class Pet {
-    private String name,type;
-    private int age;
+import java.util.Date;
 
-    public Pet(String name, String type, int age) {
+public class Pet {
+    private static int id=0;
+    private String name,type;
+    private Date dob;
+
+    public Pet(String name, String type, Date dob) {
         setName(name);
         setType(type);
-        setAge(age);
+        setDOB(dob);
+        setId(id);
+        id++;
+
     }
 
     public String getName() {
@@ -16,8 +22,12 @@ public class Pet {
         return type;
     }
 
-    public int getAge() {
-        return age;
+    public Date getDOB() {
+        return dob;
+    }
+
+    public static int getId() {
+        return id;
     }
 
     public void setName(String name) {
@@ -28,11 +38,15 @@ public class Pet {
         this.type = type;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDOB(Date dob) {
+        this.dob = dob;
+    }
+
+    public static void setId(int id) {
+        Pet.id = id;
     }
 
     public String toString() {
-        return "Animal Type: " + getType() + " Animal Name: " + getName() + " Animal Age: " + getAge();
+        return "Pet ID: " + getId() + " Animal Type: " + getType() + " Name: " + getName() + " Date of Birth: " + getDOB();
     }
 }
