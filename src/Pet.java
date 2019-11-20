@@ -3,12 +3,12 @@ import java.util.Date;
 public class Pet {
     private static int id=0;
     private String name,type;
-    private Date dob;
+    //private Date dob;
 
-    public Pet(String name, String type, Date dob) {
+    public Pet(String name, String type) {
         setName(name);
         setType(type);
-        setDOB(dob);
+        //setDOB(dob);
         setId(id);
         id++;
 
@@ -22,9 +22,9 @@ public class Pet {
         return type;
     }
 
-    public Date getDOB() {
+    /*public Date getDOB() {
         return dob;
-    }
+    }*/
 
     public static int getId() {
         return id;
@@ -38,15 +38,15 @@ public class Pet {
         this.type = type;
     }
 
-    public void setDOB(Date dob) {
+    /*public void setDOB(Date dob) {
         this.dob = dob;
-    }
+    }*/
 
     public static void setId(int id) {
         Pet.id = id;
     }
 
     public String toString() {
-        return "Pet ID: " + getId() + " Animal Type: " + getType() + " Name: " + getName() + " Date of Birth: " + getDOB();
+        return "Pet ID: " + getId() + " Animal Type: " + getType() + " Name: " + getName();
     }
 }
