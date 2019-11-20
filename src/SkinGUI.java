@@ -22,19 +22,19 @@ public class SkinGUI extends SymptomSelectGUI{
         severity5 = new JRadioButton("5");
 
         //create image icons to contain images and assign the icons to a Jlabel for display purposes
-        ImageIcon partHairImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\rsz_checkdogskin.jpg");
+        ImageIcon partHairImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
         JLabel partHair = new JLabel(partHairImage);
 
-        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\catSkinTag.jpg");
+        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\cat_skintag.jpg");
         JLabel lblSkinTag = new JLabel(skinTagImage);
 
-        ImageIcon cystImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\cat cyst.jpg");
+        ImageIcon cystImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\cat_cyst.jpg");
         JLabel lblCyst = new JLabel(cystImage);
 
-        ImageIcon fleaImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\catFlea.jpg");
+        ImageIcon fleaImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\cat_flea.jpg");
         JLabel lblFlea = new JLabel(fleaImage);
 
-        ImageIcon baldingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\catbalding.jpg");
+        ImageIcon baldingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\cat_balding.jpg");
         JLabel lblBalding = new JLabel(baldingImage);
 
 

@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class SymptomSelectGUI extends MainGUI {
+public class SymptomSelectGUI extends JFrame {
+    JMenu fileMenu,PetsMenu,DiagnoseMenu;
     private JLabel lblSelect,lblSymptom;
     private JComboBox cmbPet, cmbSymptom;
     private JButton btnDiagnose;
@@ -9,6 +10,16 @@ public class SymptomSelectGUI extends MainGUI {
     private String[] symptoms = {"Cough","Skin Problem"};
 
     public SymptomSelectGUI(){
+
+        MainGUI.createFileMenu();
+        MainGUI.createPetsMenu();
+        MainGUI.createDiagnoseMenu();
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        menuBar.setBackground(new Color(115,170,10));
+        menuBar.add(fileMenu);
+        menuBar.add(PetsMenu);
+        menuBar.add(DiagnoseMenu);
 
 
         //define the components declared above
@@ -46,8 +57,4 @@ public class SymptomSelectGUI extends MainGUI {
     }
 
     //Code here to event handle -- Once button pressed and input validated -- decide what Gui to display - skin or coughing -- plus display images appropriate to pet type
-
-    public static void main(String[] args) {
-        SymptomSelectGUI test = new SymptomSelectGUI();
-    }
 }
