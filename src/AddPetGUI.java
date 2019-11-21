@@ -5,8 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class AddPetGUI extends MainGUI {
+public class AddPetGUI extends JFrame {
     //declare components that will be used in the gui as attributes
     private JLabel name,type,dob;
     private JTextField petName;
@@ -14,9 +15,14 @@ public class AddPetGUI extends MainGUI {
     private JButton submit;
     //private DatePicker petDOB;
     //create an array of string to hold the options for the petType combo box -- only two options due to time constraints
-    private String[] pets = {"dog","cat"};
+    private String[] petOptions = {"dog","cat"};
 
     public AddPetGUI(){
+
+
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        menuBar.setBackground(new Color(115,170,10));
 
 
 
@@ -25,7 +31,7 @@ public class AddPetGUI extends MainGUI {
         type = new JLabel("Pet Type:");
         dob = new JLabel("Date of Birth:");
         petName = new JTextField("");
-        petType = new JComboBox(pets);
+        petType = new JComboBox(petOptions);
         submit = new JButton("Submit");
         //petDOB = new DatePicker();
 
@@ -85,9 +91,12 @@ public class AddPetGUI extends MainGUI {
                     if(i==petName.getText().length())
                     {
                         Pet temp = new Pet(petName.getText(), petType.getSelectedItem().toString());
-                        super.pets.add(temp);
+                        MainGUI f = (MainGUI) MainGUI.getMainGUIFrame();
+                        ArrayList<Pet> pets = f.getPets();
+                        pets.add(temp);
+                        //super.pets.add(temp);
                         String output = "";
-                        for(Pet p:super.pets)
+                        for(Pet p:pets)
                         {
                             output+=p.toString();
                         }

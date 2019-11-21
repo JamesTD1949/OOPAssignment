@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class SkinGUI extends SymptomSelectGUI{
+public class SkinGUI extends JFrame{
     private JRadioButton skinTag,cyst,flea,balding,severity1,severity2,severity3,severity4,severity5;
     private JLabel severity,partHair,lblSkinTag,lblCyst,lblFlea,lblBalding;
     private JButton diagnose;
 
-    public SkinGUI()
+    public SkinGUI(String name, String type)
     {
         //define the components declared above
         severity = new JLabel("Severity of Skin Condition(low to high):");
@@ -89,10 +89,13 @@ public class SkinGUI extends SymptomSelectGUI{
         //Set general JFrame properties
         setSize(850,500);
         setTitle("Vitaliti Vet - Diagnose Skin Condition");
+        setVisible(true);
+        setLayout(null);
+        setLocation(500,250);
     }
 
     public static void main(String[] args) {
-        SkinGUI test = new SkinGUI();
+        SkinGUI test = new SkinGUI("Peach","Dog");
     }
 
 }

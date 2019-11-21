@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SymptomSelectGUI extends JFrame {
-    JMenu fileMenu,PetsMenu,DiagnoseMenu;
+    private JMenu back
     private JLabel lblSelect,lblSymptom;
     private JComboBox cmbPet, cmbSymptom;
     private JButton btnDiagnose;
@@ -11,15 +11,12 @@ public class SymptomSelectGUI extends JFrame {
 
     public SymptomSelectGUI(){
 
-        MainGUI.createFileMenu();
-        MainGUI.createPetsMenu();
-        MainGUI.createDiagnoseMenu();
+
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
-        menuBar.add(fileMenu);
-        menuBar.add(PetsMenu);
-        menuBar.add(DiagnoseMenu);
+        back = new JMenu("Back");
+
 
 
         //define the components declared above
@@ -52,7 +49,9 @@ public class SymptomSelectGUI extends JFrame {
 
         //Set general JFrame properties
         setSize(500,500);
+        setLocation(500,250);
         setTitle("Vitaliti Vet - Select Symptom");
+        setLayout(null);
 
     }
 

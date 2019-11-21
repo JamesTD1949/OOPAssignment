@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public class MainGUI extends JFrame //implements ActionListener
 {
-    private static JMenu fileMenu,PetsMenu,DiagnoseMenu;
-    public ArrayList<Pet> pets = new ArrayList<Pet>();
+    private JMenu fileMenu,PetsMenu,DiagnoseMenu;
+    public static ArrayList<Pet> pets = new ArrayList<Pet>();
     public ArrayList<Diagnose> diagnoses = new ArrayList<Diagnose>();
+    static MainGUI frame;
 
     public ArrayList<Pet> getPets()
     {
@@ -16,10 +17,15 @@ public class MainGUI extends JFrame //implements ActionListener
     }
 
     public static void main(String[] args) {
-        MainGUI frame = new MainGUI();
+        frame = new MainGUI();
         frame.setVisible(true);
     }
 
+    public static JFrame getMainGUIFrame()
+
+    {
+        return frame;
+    }
     public MainGUI() {
         Container cPane;
 
@@ -27,7 +33,7 @@ public class MainGUI extends JFrame //implements ActionListener
         setTitle     ("Vitaliti Vet - Home");
         setSize      (1100,500);
         setResizable (false);
-        setLocation  (500,500);
+        setLocation  (500,250);
         ImageIcon icon = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\homepage.jpg");
         JLabel label = new JLabel(icon);
         add(label);
@@ -54,7 +60,7 @@ public class MainGUI extends JFrame //implements ActionListener
     } // end constructor
 
 
-    public static JMenu createFileMenu() {
+    private JMenu createFileMenu() {
         JMenuItem    item; // declare a re-usable JMenuItem object
 
         // first, create the menu: then you can start on the items
@@ -84,7 +90,7 @@ public class MainGUI extends JFrame //implements ActionListener
 
     }
 
-    public static JMenu createPetsMenu() {
+    private JMenu createPetsMenu() {
         JMenuItem    item;
 
         PetsMenu = new JMenu("Pets");
@@ -92,7 +98,7 @@ public class MainGUI extends JFrame //implements ActionListener
         item = new JMenuItem("Add Pet");      //Add Pet
         item.addActionListener(event -> {
             AddPetGUI test = new AddPetGUI();
-            //this.setVisible(false);
+            frame.setVisible(false);
             test.setVisible(true);
 
         });
@@ -109,13 +115,17 @@ public class MainGUI extends JFrame //implements ActionListener
         return  PetsMenu;
     } // end createEditMenu
 
-    public static JMenu createDiagnoseMenu() {
+    private JMenu createDiagnoseMenu() {
             JMenuItem    item;
 
             DiagnoseMenu = new JMenu("Diagnose");
 
             item = new JMenuItem("Diagnose");      //Diagnose
-            item.addActionListener(event -> {System.out.println("Diagnose");});
+            item.addActionListener(event -> {
+                SymptomSelectGUI test = new SymptomSelectGUI();
+                //this.setVisible(false);
+                test.setVisible(true);
+            });
             DiagnoseMenu.add( item );
 
             item = new JMenuItem("View Diagnoses");    //View Diagnoses
