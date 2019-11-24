@@ -1,5 +1,5 @@
 //import statements
-import javafx.scene.control.DatePicker;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,6 +66,8 @@ public class AddPetGUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         setVisible(true);
+        setLocation(500,250);
+        setResizable(false);
 
         submit.addActionListener(event -> {
             int i;

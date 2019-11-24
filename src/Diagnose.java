@@ -7,7 +7,7 @@ public class Diagnose {
     private int petID,severity;
     private Date today;
 
-    public Diagnose(String condition, int petID, int severity)
+    public Diagnose(int petID,String condition, int severity)
     {
         setCondition(condition);
         setPetID(petID);

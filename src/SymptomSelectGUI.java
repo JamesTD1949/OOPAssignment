@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SymptomSelectGUI extends JFrame {
-    private JMenu back
+    private JMenu back;
     private JLabel lblSelect,lblSymptom;
     private JComboBox cmbPet, cmbSymptom;
     private JButton btnDiagnose;
@@ -52,6 +52,23 @@ public class SymptomSelectGUI extends JFrame {
         setLocation(500,250);
         setTitle("Vitaliti Vet - Select Symptom");
         setLayout(null);
+
+        btnDiagnose.addActionListener(event -> {
+            if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
+            {
+                SkinGUI dog = new SkinGUI(1,"Peach","dog");
+                this.setVisible(false);
+                dog.setVisible(true);
+            }
+            else if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
+            {
+                SkinGUI dog = new SkinGUI(1,"Peach","dog");
+                this.setVisible(false);
+                dog.setVisible(true);
+            }
+
+
+        });
 
     }
 

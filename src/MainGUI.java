@@ -8,12 +8,16 @@ public class MainGUI extends JFrame //implements ActionListener
 {
     private JMenu fileMenu,PetsMenu,DiagnoseMenu;
     public static ArrayList<Pet> pets = new ArrayList<Pet>();
-    public ArrayList<Diagnose> diagnoses = new ArrayList<Diagnose>();
+    public static ArrayList<Diagnose> diagnoses = new ArrayList<Diagnose>();
     static MainGUI frame;
 
     public ArrayList<Pet> getPets()
     {
         return pets;
+    }
+    public ArrayList<Diagnose> getDiagnoses()
+    {
+        return diagnoses;
     }
 
     public static void main(String[] args) {
@@ -34,7 +38,7 @@ public class MainGUI extends JFrame //implements ActionListener
         setSize      (1100,500);
         setResizable (false);
         setLocation  (500,250);
-        ImageIcon icon = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\homepage.jpg");
+        ImageIcon icon = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\HomePage.jpg");
         JLabel label = new JLabel(icon);
         add(label);
         // shut down the program when the window is closed
@@ -43,7 +47,7 @@ public class MainGUI extends JFrame //implements ActionListener
         cPane = getContentPane( );
         cPane.setLayout(new FlowLayout());
 
-        //Invoke user written functions to create the JMenus and JMenuItems. I placed them into constructors to enable code re-use for my other GUI classes which share the same menubar and to reduce the amount of code in MainGui's constructor.
+        //Invoke user written functions to create the JMenus and JMenuItems. I placed them into constructors to reduce the amount of code in MainGui's constructor.
         createFileMenu();
         createPetsMenu();
         createDiagnoseMenu();
@@ -123,7 +127,7 @@ public class MainGUI extends JFrame //implements ActionListener
             item = new JMenuItem("Diagnose");      //Diagnose
             item.addActionListener(event -> {
                 SymptomSelectGUI test = new SymptomSelectGUI();
-                //this.setVisible(false);
+                frame.setVisible(false);
                 test.setVisible(true);
             });
             DiagnoseMenu.add( item );
