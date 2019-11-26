@@ -34,18 +34,17 @@ public class MainGUI extends JFrame //implements ActionListener
         Container cPane;
 
         //set the frame properties
-        setTitle     ("Vitaliti Vet - Home");
-        setSize      (1100,500);
-        setResizable (false);
-        setLocation  (500,250);
+        setTitle("Vitaliti Vet - Home");
+        setSize(1100,500);
+        setResizable(false);
+        setLocation(500,250);
         ImageIcon icon = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\HomePage.jpg");
         JLabel label = new JLabel(icon);
         add(label);
         // shut down the program when the window is closed
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        cPane = getContentPane( );
-        cPane.setLayout(new FlowLayout());
+
 
         //Invoke user written functions to create the JMenus and JMenuItems. I placed them into constructors to reduce the amount of code in MainGui's constructor.
         createFileMenu();

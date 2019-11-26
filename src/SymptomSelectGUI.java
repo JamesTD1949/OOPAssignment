@@ -56,21 +56,31 @@ public class SymptomSelectGUI extends JFrame {
         btnDiagnose.addActionListener(event -> {
             if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
             {
-                SkinGUI dog = new SkinGUI(1,"Peach","dog");
+                SkinGUI dogSkin = new SkinGUI(1,"Peach","dog");
                 this.setVisible(false);
-                dog.setVisible(true);
+                dogSkin.setVisible(true);
+            }
+            else if(cmbPet.getSelectedIndex()==1 && cmbSymptom.getSelectedIndex()==1)
+            {
+                SkinGUI catSkin = new SkinGUI(2,"Oscar","cat");
+                this.setVisible(false);
+                catSkin.setVisible(true);
             }
             else if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
             {
-                SkinGUI dog = new SkinGUI(1,"Peach","dog");
+                BreathingGUI breathingDog = new BreathingGUI(1,"Peach","dog");
                 this.setVisible(false);
-                dog.setVisible(true);
+                breathingDog.setVisible(true);
+            }
+            else if(cmbPet.getSelectedIndex()==1 && cmbSymptom.getSelectedIndex()==1)
+            {
+                BreathingGUI breathingCat = new BreathingGUI(2,"Oscar","cat");
+                this.setVisible(false);
+                breathingCat.setVisible(true);
             }
 
 
         });
 
     }
-
-    //Code here to event handle -- Once button pressed and input validated -- decide what Gui to display - skin or coughing -- plus display images appropriate to pet type
 }

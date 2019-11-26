@@ -9,10 +9,7 @@ import java.io.File;
 
 public class BreathingGUI extends JFrame {
 
-    private MediaPlayer mediaPlayer;
-    private JRadioButton kennelCough,heartFailure,flu,severity1,severity2,severity3,severity4,severity5;
-    private JLabel severity,breathing;
-    private JButton diagnose,kennelCoughPlay,heartFailurePlay,fluPlay;
+
     private String kennelCoughAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing.wav", heartFailureAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing2.wav",fluAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\Labrador-breathing.wav";
 
     public BreathingGUI(int petID, String name, String type)
@@ -26,19 +23,19 @@ public class BreathingGUI extends JFrame {
 
 
         //define the components declared above
-        severity = new JLabel("Severity(low to high):");
-        diagnose = new JButton("Diagnose");
-        severity1 = new JRadioButton("1");
-        severity2 = new JRadioButton("2");
-        severity3 = new JRadioButton("3");
-        severity4 = new JRadioButton("4");
-        severity5 = new JRadioButton("5");
-        kennelCough = new JRadioButton("Kennel Cough");
-        heartFailure = new JRadioButton("Heart Failure");
-        flu = new JRadioButton("Flu");
-        kennelCoughPlay = new JButton("Play Kennel Cough");
-        heartFailurePlay = new JButton("Play Heart Failure Cough");
-        fluPlay = new JButton("Play Flu Cough");
+        JLabel severity = new JLabel("Severity(low to high):");
+        JButton diagnose = new JButton("Diagnose");
+        JRadioButton severity1 = new JRadioButton("1");
+        JRadioButton severity2 = new JRadioButton("2");
+        JRadioButton severity3 = new JRadioButton("3");
+        JRadioButton severity4 = new JRadioButton("4");
+        JRadioButton severity5 = new JRadioButton("5");
+        JRadioButton kennelCough = new JRadioButton("Kennel Cough");
+        JRadioButton heartFailure = new JRadioButton("Heart Failure");
+        JRadioButton flu = new JRadioButton("Flu");
+        JButton kennelCoughPlay = new JButton("Play Kennel Cough");
+        JButton heartFailurePlay = new JButton("Play Heart Failure Cough");
+        JButton fluPlay = new JButton("Play Flu Cough");
 
         ButtonGroup condition = new ButtonGroup();
         condition.add(kennelCough);
@@ -53,7 +50,7 @@ public class BreathingGUI extends JFrame {
         severityGroup.add(severity5);
 
         ImageIcon breathingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_breathing.jpg");
-        breathing = new JLabel(breathingImage);
+        JLabel breathing = new JLabel(breathingImage);
 
         //create dimension objects to hold the preferred width and height for the specified components
         Dimension label = severity.getPreferredSize();
@@ -95,7 +92,7 @@ public class BreathingGUI extends JFrame {
         add(kennelCoughPlay);
         add(heartFailurePlay);
         add(fluPlay);
-
+/*
         kennelCoughPlay.addActionListener(event -> {
              playAudio(kennelCoughAudio);});
 
@@ -107,14 +104,14 @@ public class BreathingGUI extends JFrame {
 
         diagnose.addActionListener(event -> {
             System.out.println("Success44"); });
-
+*/
 
         //Set general JFrame properties
         setVisible(true);
 
     }
 
-    public void playAudio(String path)
+   /* public void playAudio(String path)
     {
         //create a new Media object using the file path specified in the call to playAudio
         //this will become the audio clip object we wish to play
@@ -145,7 +142,7 @@ public class BreathingGUI extends JFrame {
          *If it succeeds, you will hear the sound of a gunshot, otherwise it fails either because the audio clip could not be found, or the
          *MediaPlayer object had some difficulty in actually playing the file. If it fails, the "catch" clause executes and an error message
          *is displayed to the console*/
-
+/*
         try
         {
             mediaPlayer.play();
@@ -155,7 +152,7 @@ public class BreathingGUI extends JFrame {
             System.out.println("The audio file " + path + " could not be played!");
         }
 
-    }
+    }  */
 
     public static void main(String[] args) {
         BreathingGUI test = new BreathingGUI(1,"Peach","cat");

@@ -3,15 +3,21 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class SkinGUI extends JFrame{
-    private JRadioButton skinTag,cyst,flea,balding,severity1,severity2,severity3,severity4,severity5;
-    private JLabel severity,partHair,lblSkinTag,lblCyst,lblFlea,lblBalding;
-    private JButton diagnose;
+    private JRadioButton skinTag;
+    private JRadioButton cyst;
+    private JRadioButton flea;
+    private JRadioButton balding;
+    private JRadioButton severity1;
+    private JRadioButton severity2;
+    private JRadioButton severity3;
+    private JRadioButton severity4;
+    private JRadioButton severity5;
 
     public SkinGUI(int petID, String name, String type)
     {
         //define the components declared above
-        severity = new JLabel("Severity(low to high):");
-        diagnose = new JButton("Diagnose");
+        JLabel severity = new JLabel("Severity(low to high):");
+        JButton diagnose = new JButton("Diagnose");
         skinTag = new JRadioButton("Skin Tag");
         cyst = new JRadioButton("Cyst");
         flea = new JRadioButton("Flea");
@@ -37,19 +43,19 @@ public class SkinGUI extends JFrame{
 
         //create image icons to contain images and assign the icons to a Jlabel for display purposes
         ImageIcon partHairImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
-        partHair = new JLabel(partHairImage);
+        JLabel partHair = new JLabel(partHairImage);
 
         ImageIcon skinTagImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_skintag.jpg");
-        lblSkinTag = new JLabel(skinTagImage);
+        JLabel lblSkinTag = new JLabel(skinTagImage);
 
         ImageIcon cystImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_cyst.jpg");
-        lblCyst = new JLabel(cystImage);
+        JLabel lblCyst = new JLabel(cystImage);
 
         ImageIcon fleaImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_flea.jpg");
-        lblFlea = new JLabel(fleaImage);
+        JLabel lblFlea = new JLabel(fleaImage);
 
         ImageIcon baldingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_balding.jpg");
-        lblBalding = new JLabel(baldingImage);
+        JLabel lblBalding = new JLabel(baldingImage);
 
 
 
@@ -184,21 +190,7 @@ public class SkinGUI extends JFrame{
         SkinGUI test = new SkinGUI(1,"Peach","Dog");
     }
 
-    /*public String getButtonText(ButtonGroup test)
-    {
-
-        for(JRadioButton button:test)
-        {
-            if(button.isSelected())
-            {
-                return button.getText();
-            }
-
-        }
-        return "No button Selected";
-    }*/
-
-    public String getSkinText()
+    private String getSkinText()
     {
         if(skinTag.isSelected())
             return skinTag.getText();

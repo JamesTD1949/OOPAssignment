@@ -9,7 +9,9 @@ import java.util.ArrayList;
 
 public class AddPetGUI extends JFrame {
     //declare components that will be used in the gui as attributes
-    private JLabel name,type,dob;
+    private JLabel name;
+    private JLabel type;
+    //private JLabel dob;
     private JTextField petName;
     private JComboBox petType;
     private JButton submit;
@@ -29,7 +31,7 @@ public class AddPetGUI extends JFrame {
         //define the components declared above
         name = new JLabel("Pet Name:");
         type = new JLabel("Pet Type:");
-        dob = new JLabel("Date of Birth:");
+        //dob = new JLabel("Date of Birth:");
         petName = new JTextField("");
         petType = new JComboBox(petOptions);
         submit = new JButton("Submit");
@@ -38,15 +40,13 @@ public class AddPetGUI extends JFrame {
 
         //create dimension objects to hold the preferred width and height for the specified components
         Dimension dName = name.getPreferredSize();
-        Dimension dType = type.getPreferredSize();
-        //Dimension dDob = dob.getPreferredSize();
         Dimension dPetName = petName.getPreferredSize();
         Dimension dPetType = petType.getPreferredSize();
 
         //set the locations and dimensions of the components using the dimensions created above
         name.setBounds(100,30,dName.width,dName.height);
         //dob.setBounds(100,30,dDob.width,dDob.height);
-        type.setBounds(100,66,dType.width,dType.height);
+        type.setBounds(100,66,dName.width,dName.height);
         petName.setBounds(200,27,125,dPetName.height);   //give the text boxes a slightly lower y value to give the appearance of them being inline with the corresponding label rather than aligned with their top left corners
         petType.setBounds(200,57,125,dPetType.height);   //specify a specific width for the JTextField since the preferred width is too narrow, set the combo box to the same for aesthetic purposes
         submit.setBounds(150,150,125,50);
@@ -74,7 +74,6 @@ public class AddPetGUI extends JFrame {
             System.out.println("The text in pet textfield is: " + petName.getText());
                 if (petName.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Pet name field must be entered.", "No Pet Name", JOptionPane.ERROR_MESSAGE);
-                    return;
                 }
                 else{
                     for(i=0;i<petName.getText().length();i++)
@@ -111,7 +110,6 @@ public class AddPetGUI extends JFrame {
                     else
                     {
                         JOptionPane.showMessageDialog(null, "Pet name field can only contain letters.", "Invalid Pet Name", JOptionPane.ERROR_MESSAGE);
-                        return;
 
                     }
 
