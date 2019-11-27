@@ -1,6 +1,6 @@
 
 
-import com.sun.media.jfxmedia.MediaPlayer;
+//import com.sun.media.jfxmedia.MediaPlayer;
 
 import javax.print.attribute.standard.Media;
 import javax.swing.*;
@@ -49,7 +49,7 @@ public class BreathingGUI extends JFrame {
         severityGroup.add(severity4);
         severityGroup.add(severity5);
 
-        ImageIcon breathingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_breathing.jpg");
+        ImageIcon breathingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_breathing.jpg");
         JLabel breathing = new JLabel(breathingImage);
 
         //create dimension objects to hold the preferred width and height for the specified components

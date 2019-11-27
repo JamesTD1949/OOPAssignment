@@ -26,6 +26,14 @@ public class AddPetGUI extends JFrame {
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
 
+        JMenu backM = new JMenu("Back");
+        menuBar.add(backM);
+        JMenuItem back = new JMenuItem("ITEM");
+        backM.add(back);
+
+
+        back.addActionListener(event -> { JOptionPane.showMessageDialog(null,"Executing"); this.setVisible(false); MainGUI.frame.setVisible(true);});
+
 
 
         //define the components declared above

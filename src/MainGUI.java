@@ -38,7 +38,7 @@ public class MainGUI extends JFrame //implements ActionListener
         setSize(1100,500);
         setResizable(false);
         setLocation(500,250);
-        ImageIcon icon = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\HomePage.jpg");
+        ImageIcon icon = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\HomePage.jpg");
         JLabel label = new JLabel(icon);
         add(label);
         // shut down the program when the window is closed
@@ -125,6 +125,7 @@ public class MainGUI extends JFrame //implements ActionListener
 
             item = new JMenuItem("Diagnose");      //Diagnose
             item.addActionListener(event -> {
+                JOptionPane.showMessageDialog(null,"Executing Diagnose");
                 SymptomSelectGUI test = new SymptomSelectGUI();
                 frame.setVisible(false);
                 test.setVisible(true);

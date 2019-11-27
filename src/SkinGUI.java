@@ -42,19 +42,19 @@ public class SkinGUI extends JFrame{
         severityGroup.add(severity5);
 
         //create image icons to contain images and assign the icons to a Jlabel for display purposes
-        ImageIcon partHairImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
+        ImageIcon partHairImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
         JLabel partHair = new JLabel(partHairImage);
 
-        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_skintag.jpg");
+        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_skintag.jpg");
         JLabel lblSkinTag = new JLabel(skinTagImage);
 
-        ImageIcon cystImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_cyst.jpg");
+        ImageIcon cystImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_cyst.jpg");
         JLabel lblCyst = new JLabel(cystImage);
 
-        ImageIcon fleaImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_flea.jpg");
+        ImageIcon fleaImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_flea.jpg");
         JLabel lblFlea = new JLabel(fleaImage);
 
-        ImageIcon baldingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_balding.jpg");
+        ImageIcon baldingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_balding.jpg");
         JLabel lblBalding = new JLabel(baldingImage);
 
 

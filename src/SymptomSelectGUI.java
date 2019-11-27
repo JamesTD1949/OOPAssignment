@@ -6,23 +6,41 @@ public class SymptomSelectGUI extends JFrame {
     private JLabel lblSelect,lblSymptom;
     private JComboBox cmbPet, cmbSymptom;
     private JButton btnDiagnose;
-    private String[] pets = {"Peach -- (dog)","Oscar -- (cat)"};
+    private String[] petArray;
     private String[] symptoms = {"Cough","Skin Problem"};
+
+    private void populateArray(){
+        petArray = new String[MainGUI.pets.size()];
+        for(int i=0;i<MainGUI.pets.size();i++)
+        {
+
+            String name =  MainGUI.pets.get(i).getName();
+            System.out.println(name);
+            petArray[i] = name;
+        }
+    }
 
     public SymptomSelectGUI(){
 
-
+        populateArray();
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
-        back = new JMenu("Back");
+        add(menuBar);
+        JMenu backM = new JMenu("Back");
+        menuBar.add(backM);
+        JMenuItem back = new JMenuItem("ITEM");
+        backM.add(back);
+
+
+        back.addActionListener(event -> { JOptionPane.showMessageDialog(null,"Executing"); this.setVisible(false); MainGUI.frame.setVisible(true);});
 
 
 
         //define the components declared above
         lblSelect = new JLabel("Select Pet:");
         lblSymptom= new JLabel("Select Symptom:");
-        cmbPet = new JComboBox(pets);
+        cmbPet = new JComboBox(petArray);
         cmbSymptom = new JComboBox(symptoms);
         btnDiagnose = new JButton("Submit");
 
