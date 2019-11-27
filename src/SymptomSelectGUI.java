@@ -72,7 +72,7 @@ public class SymptomSelectGUI extends JFrame {
         setLayout(null);
 
         btnDiagnose.addActionListener(event -> {
-            if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
+            /*if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
             {
                 SkinGUI dogSkin = new SkinGUI(1,"Peach","dog");
                 this.setVisible(false);
@@ -95,6 +95,15 @@ public class SymptomSelectGUI extends JFrame {
                 BreathingGUI breathingCat = new BreathingGUI(2,"Oscar","cat");
                 this.setVisible(false);
                 breathingCat.setVisible(true);
+            } */
+
+            if(cmbSymptom.getSelectedIndex()==0)
+            {
+                BreathingGUI nextFrame = new BreathingGUI(MainGUI.pets.get(cmbPet.getSelectedIndex()));
+            }
+            else
+            {
+                SkinGUI nextFrame = new SkinGUI(MainGUI.pets.get(cmbPet.getSelectedIndex()));
             }
 
 

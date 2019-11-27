@@ -26,13 +26,13 @@ public class AddPetGUI extends JFrame {
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
 
-        JMenu backM = new JMenu("Back");
+        JMenu backM = new JMenu("Navigation");
         menuBar.add(backM);
-        JMenuItem back = new JMenuItem("ITEM");
+        JMenuItem back = new JMenuItem("Back");
         backM.add(back);
 
 
-        back.addActionListener(event -> { JOptionPane.showMessageDialog(null,"Executing"); this.setVisible(false); MainGUI.frame.setVisible(true);});
+        back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
 
 
 
@@ -90,36 +90,24 @@ public class AddPetGUI extends JFrame {
                         System.out.println(c);
 
                         if(!Character.isLetter(c))
-                        {
+                            {
                             break;
-                        }
+                            }
 
 
 
                     }
                     if(i==petName.getText().length())
-                    {
+                        {
                         Pet temp = new Pet(petName.getText(), petType.getSelectedItem().toString());
                         MainGUI f = (MainGUI) MainGUI.getMainGUIFrame();
                         ArrayList<Pet> pets = f.getPets();
                         pets.add(temp);
-                        //super.pets.add(temp);
-                        String output = "";
-                        for(Pet p:pets)
-                        {
-                            output+=p.toString();
                         }
-
-
-
-                        System.out.print(output);
-
-                    }
                     else
-                    {
+                        {
                         JOptionPane.showMessageDialog(null, "Pet name field can only contain letters.", "Invalid Pet Name", JOptionPane.ERROR_MESSAGE);
-
-                    }
+                        }
 
                     }
 

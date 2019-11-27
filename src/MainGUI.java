@@ -1,14 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
 public class MainGUI extends JFrame //implements ActionListener
 {
     private JMenu fileMenu,PetsMenu,DiagnoseMenu;
-    public static ArrayList<Pet> pets = new ArrayList<Pet>();
-    public static ArrayList<Diagnose> diagnoses = new ArrayList<Diagnose>();
+    public static ArrayList<Pet> pets = new ArrayList<>();
+    public static ArrayList<Diagnose> diagnoses = new ArrayList<>();
     static MainGUI frame;
 
     public ArrayList<Pet> getPets()
@@ -31,7 +31,7 @@ public class MainGUI extends JFrame //implements ActionListener
         return frame;
     }
     public MainGUI() {
-        Container cPane;
+
 
         //set the frame properties
         setTitle("Vitaliti Vet - Home");
@@ -63,7 +63,7 @@ public class MainGUI extends JFrame //implements ActionListener
     } // end constructor
 
 
-    private JMenu createFileMenu() {
+    private void createFileMenu() {
         JMenuItem    item; // declare a re-usable JMenuItem object
 
         // first, create the menu: then you can start on the items
@@ -89,11 +89,11 @@ public class MainGUI extends JFrame //implements ActionListener
         item.addActionListener(event -> {System.out.println("Save As...");});
         fileMenu.add( item );
 
-        return fileMenu;
+        //return fileMenu;
 
     }
 
-    private JMenu createPetsMenu() {
+    private void createPetsMenu() {
         JMenuItem    item;
 
         PetsMenu = new JMenu("Pets");
@@ -108,35 +108,61 @@ public class MainGUI extends JFrame //implements ActionListener
         PetsMenu.add( item );
 
         item = new JMenuItem("View Pets");    //View Pets
-        item.addActionListener(event -> {System.out.println("View Pets");});
+        item.addActionListener(event -> {
+            if(pets.size()!=0) {
+                String output = String.format("%20s%20s%20s\n%20s%20s%20s\n", "Pet ID", "Pet Name", "Pet Type", "------", "--------", "--------");
+                for (int i = 0; i < pets.size(); i++) {
+                    Pet iterator = pets.get(i);
+                    output += String.format("%20d%20s%20s\n", iterator.getId(), iterator.getName(), iterator.getType());
+                }
+                JOptionPane.showMessageDialog(null, output);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"There are no pets in the system.","Can't Display Pets",JOptionPane.ERROR_MESSAGE);
+            }
+        });
         PetsMenu.add( item );
 
         item = new JMenuItem("Delete Pet");    //Delete Pets
         item.addActionListener(event -> {System.out.println("Delete Pet");});
         PetsMenu.add( item );
 
-        return  PetsMenu;
+        //return  PetsMenu;
     } // end createEditMenu
 
-    private JMenu createDiagnoseMenu() {
+    private void createDiagnoseMenu() {
             JMenuItem    item;
 
             DiagnoseMenu = new JMenu("Diagnose");
 
             item = new JMenuItem("Diagnose");      //Diagnose
             item.addActionListener(event -> {
-                JOptionPane.showMessageDialog(null,"Executing Diagnose");
                 SymptomSelectGUI test = new SymptomSelectGUI();
                 frame.setVisible(false);
                 test.setVisible(true);
             });
-            DiagnoseMenu.add( item );
+            DiagnoseMenu.add(item);
 
             item = new JMenuItem("View Diagnoses");    //View Diagnoses
-            item.addActionListener(event -> {System.out.println("View Diagnoses");});
+            item.addActionListener(event -> {
+                if(diagnoses.size()!=0) {
+                    String output = String.format("%20s%20s%20s%20s\n%20s%20s%20s%20s\n", "Diagnosis ID", "Condition", "Severity","Pet ID","Date", "------------", "---------", "--------","------","----");
+                    for (int i = 0; i < diagnoses.size(); i++) {
+                        Diagnose iterator = diagnoses.get(i);
+                        String formattedDateOfDiagnosis = new SimpleDateFormat("dd/MMM/YYYY").format(iterator.getDate());
+                        output += String.format("%20d%20s%20d%20d%20s\n", iterator.getId(), iterator.getCondition(), iterator.getSeverity(),iterator.getPetID(),formattedDateOfDiagnosis);
+                    }
+                    JOptionPane.showMessageDialog(null, output);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"There are no diagnoses in the system.","Can't Display Diagnoses",JOptionPane.ERROR_MESSAGE);
+                }
+            });
             DiagnoseMenu.add( item );
 
-            return DiagnoseMenu;
+            //return DiagnoseMenu;
             } // end createEditMenu
 
 

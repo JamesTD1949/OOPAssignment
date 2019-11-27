@@ -13,7 +13,7 @@ public class SkinGUI extends JFrame{
     private JRadioButton severity4;
     private JRadioButton severity5;
 
-    public SkinGUI(int petID, String name, String type)
+    public SkinGUI(Pet pet)
     {
         //define the components declared above
         JLabel severity = new JLabel("Severity(low to high):");
@@ -45,16 +45,16 @@ public class SkinGUI extends JFrame{
         ImageIcon partHairImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
         JLabel partHair = new JLabel(partHairImage);
 
-        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_skintag.jpg");
+        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_skintag.jpg");
         JLabel lblSkinTag = new JLabel(skinTagImage);
 
-        ImageIcon cystImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_cyst.jpg");
+        ImageIcon cystImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_cyst.jpg");
         JLabel lblCyst = new JLabel(cystImage);
 
-        ImageIcon fleaImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_flea.jpg");
+        ImageIcon fleaImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_flea.jpg");
         JLabel lblFlea = new JLabel(fleaImage);
 
-        ImageIcon baldingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + type + "_balding.jpg");
+        ImageIcon baldingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_balding.jpg");
         JLabel lblBalding = new JLabel(baldingImage);
 
 
@@ -159,7 +159,7 @@ public class SkinGUI extends JFrame{
 
 
                 }
-                Diagnose temp = new Diagnose(petID,getSkinText(),getSeverity());
+                Diagnose temp = new Diagnose(pet.getId(),getSkinText(),getSeverity());
                 diagnoses.add(temp);
                 String output="";
                 for(Diagnose d:diagnoses)
@@ -187,7 +187,8 @@ public class SkinGUI extends JFrame{
     }
 
     public static void main(String[] args) {
-        SkinGUI test = new SkinGUI(1,"Peach","Dog");
+        Pet peach = new Pet("Peach","dog");
+        SkinGUI test = new SkinGUI(peach);
     }
 
     private String getSkinText()

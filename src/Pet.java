@@ -26,7 +26,7 @@ public class Pet {
         return dob;
     }*/
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
