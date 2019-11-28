@@ -1,6 +1,6 @@
 
 
-//import javafx..media.jfxmedia.MediaPlayer;
+import javafx.scene.media.MediaPlayer;
 
 import javax.print.attribute.standard.Media;
 import javax.swing.*;
@@ -93,16 +93,16 @@ public class BreathingGUI extends JFrame {
         add(heartFailurePlay);
         add(fluPlay);
 
-       /* AudioFilePlayer player = new AudioFilePlayer();
+        AudioFilePlayer player = new AudioFilePlayer();
 
         kennelCoughPlay.addActionListener(event -> {
              player.playAudio(kennelCoughAudio);});
 
         heartFailurePlay.addActionListener(event -> {
-            playAudio(heartFailureAudio); });
+            player.playAudio(heartFailureAudio); });
 
         fluPlay.addActionListener(event -> {
-            playAudio(fluAudio); });
+            player.playAudio(fluAudio); });
 
         diagnose.addActionListener(event -> {
             System.out.println("Success44"); });
@@ -127,11 +127,4 @@ public class BreathingGUI extends JFrame {
         JFXPanel fxPanel = new JFXPanel();
     }
 
-}
-
-
-        */
-
-
-    }
 }
