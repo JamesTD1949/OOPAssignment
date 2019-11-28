@@ -26,14 +26,14 @@ public class SymptomSelectGUI extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
-        add(menuBar);
-        JMenu backM = new JMenu("Back");
+
+        JMenu backM = new JMenu("Navigation");
         menuBar.add(backM);
-        JMenuItem back = new JMenuItem("ITEM");
+        JMenuItem back = new JMenuItem("Back");
         backM.add(back);
 
 
-        back.addActionListener(event -> { JOptionPane.showMessageDialog(null,"Executing"); this.setVisible(false); MainGUI.frame.setVisible(true);});
+        back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
 
 
 

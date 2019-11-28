@@ -15,7 +15,7 @@ import java.awt.*;
   and just call AudioFilePlayer.playAudio() as necessary from whichever class you need to use it from in your
   project*/
        
-public class AudioFilePlayer extends JFrame implements ActionListener{
+public class AudioFilePlayer extends JFrame{
 	
 	JButton audioButton; //need this global for event-handling later
 

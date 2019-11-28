@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public class Pet {
+public class Pet implements Serializable {
     private static int id=0;
     private String name,type;
     //private Date dob;

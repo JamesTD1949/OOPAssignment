@@ -11,8 +11,8 @@ import java.util.concurrent.atomic.AtomicReference;
 public class MainGUI extends JFrame implements Serializable// ActionListener
 {
     private JMenu fileMenu,PetsMenu,DiagnoseMenu;
-    public static ArrayList<Pet> pets = new ArrayList<>();
-    public static ArrayList<Diagnose> diagnoses = new ArrayList<>();
+    public static ArrayList<Pet> pets = new ArrayList<Pet>();
+    public static ArrayList<Diagnose> diagnoses = new ArrayList<Diagnose>();
     static MainGUI frame;
 
     public ArrayList<Pet> getPets()
@@ -91,17 +91,20 @@ public class MainGUI extends JFrame implements Serializable// ActionListener
             try {
                 outFileStream = new FileOutputStream(outFile);
             } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null,"File Not Found Exception occurred. See Stack Trace for more info.","File Not Found",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
             ObjectOutputStream outObjectStream = null;
             try {
                 outObjectStream = new ObjectOutputStream(outFileStream);
             } catch (IOException e) {
+                JOptionPane.showMessageDialog(null,"IO Exception occurred. See Stack Trace for more info.","IO Exception",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
             try {
                 outObjectStream.writeObject(pets);
             } catch (IOException e) {
+                JOptionPane.showMessageDialog(null,"IO Exception occurred. See Stack Trace for more info.","IO Exception",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
            /* try {

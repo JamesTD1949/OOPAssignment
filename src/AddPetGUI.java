@@ -5,9 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AddPetGUI extends JFrame {
+public class AddPetGUI extends JFrame{
     //declare components that will be used in the gui as attributes
     private JLabel name;
     private JLabel type;

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class SkinGUI extends JFrame{
@@ -15,6 +16,18 @@ public class SkinGUI extends JFrame{
 
     public SkinGUI(Pet pet)
     {
+
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        menuBar.setBackground(new Color(115,170,10));
+
+        JMenu backM = new JMenu("Navigation");
+        menuBar.add(backM);
+        JMenuItem back = new JMenuItem("Back");
+        backM.add(back);
+        back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
+
+
         //define the components declared above
         JLabel severity = new JLabel("Severity(low to high):");
         JButton diagnose = new JButton("Diagnose");
@@ -99,10 +112,12 @@ public class SkinGUI extends JFrame{
         add(severity4);
         add(severity5);
         add(partHair);
-        add(lblBalding);
         add(lblSkinTag);
         add(lblCyst);
+        add(lblBalding);
         add(lblFlea);
+
+
 
 
         diagnose.addActionListener(event -> {
@@ -123,7 +138,7 @@ public class SkinGUI extends JFrame{
                     case "Skin Tag":
                         if(getSeverity()<3)
                             JOptionPane.showMessageDialog(null,"Take no action but re-examine if Skin Tag gets bigger.");
-                        if(getSeverity()==3)
+                        else if(getSeverity()==3)
                             JOptionPane.showMessageDialog(null,"Take Sample to send for analysis.");
                         else
                             JOptionPane.showMessageDialog(null,"Schedule Surgery to remove Skin Tag.");
@@ -131,7 +146,7 @@ public class SkinGUI extends JFrame{
                     case "Cyst":
                         if(getSeverity()<3)
                             JOptionPane.showMessageDialog(null,"Administer anti-inflammatory injection and re-examine in two weeks.");
-                        if(getSeverity()==3)
+                        else if(getSeverity()==3)
                             JOptionPane.showMessageDialog(null,"Take Sample to send for analysis.");
                         else
                             JOptionPane.showMessageDialog(null,"Schedule Surgery to remove Cyst.");
@@ -139,7 +154,7 @@ public class SkinGUI extends JFrame{
                     case "Flea":
                         if(getSeverity()<3)
                             JOptionPane.showMessageDialog(null,"Give Flea Bath and groom regularly.");
-                        if(getSeverity()==3)
+                        else if(getSeverity()==3)
                             JOptionPane.showMessageDialog(null,"Give Flea Bath, worm dose and 2 week supply of vitamin supplements.");
                         else
                             JOptionPane.showMessageDialog(null,"Shave fur,give blood transfusion and overnight care.");
@@ -147,7 +162,7 @@ public class SkinGUI extends JFrame{
                     case "Balding":
                         if(getSeverity()<3)
                             JOptionPane.showMessageDialog(null,"Give Skin Cream and re-examine in two weeks.");
-                        if(getSeverity()==3)
+                        else if(getSeverity()==3)
                             JOptionPane.showMessageDialog(null,"Take blood test to send to endocrinologist to check for allergies.");
                         else
                             JOptionPane.showMessageDialog(null,"Give antibiotics and re-examine in 5 days.");
@@ -186,10 +201,6 @@ public class SkinGUI extends JFrame{
         setResizable(false);
     }
 
-    public static void main(String[] args) {
-        Pet peach = new Pet("Peach","dog");
-        SkinGUI test = new SkinGUI(peach);
-    }
 
     private String getSkinText()
     {
@@ -205,7 +216,7 @@ public class SkinGUI extends JFrame{
             return "None";
     }
 
-    public int getSeverity()
+    private int getSeverity()
     {
         if(severity1.isSelected())
             return 1;
