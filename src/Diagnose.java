@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Diagnose {
+public class Diagnose implements Serializable {
     private static int id;
     private String condition,date;
     private int petID,severity;

@@ -73,17 +73,16 @@ public class MainGUI extends JFrame implements Serializable// ActionListener
         // first, create the menu: then you can start on the items
         fileMenu = new JMenu("File");
 
-        // create the first item
-        item = new JMenuItem("New");
-        //item.addActionListener(this);//New
-        fileMenu.add( item );
 
         // repeat for all the other menu items in the File menu
-        item = new JMenuItem("Open...");
-        //item.addActionListener(this);//Open...
+        item = new JMenuItem("Open Pets");
+        item.addActionListener(event -> {
+            FileInputStream fis = null;
+            ObjectInputStream ois = null;
+        });
         fileMenu.add( item );
 
-        item = new JMenuItem("Save");
+        item = new JMenuItem("Save Pets");
         //item.addActionListener(this);//Save
         item.addActionListener(event -> {
             File outFile = new File("PetArrayList.data");
@@ -107,39 +106,32 @@ public class MainGUI extends JFrame implements Serializable// ActionListener
                 JOptionPane.showMessageDialog(null,"IO Exception occurred. See Stack Trace for more info.","IO Exception",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
-           /* try {
-                outObjectStream.writeObject(diagnoses);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
         });
         fileMenu.add( item );
 
-        item = new JMenuItem("Save As...");
+        item = new JMenuItem("Save Diagnoses");
         //item.addActionListener(this);//Save As...
 
         item.addActionListener(event ->{
-            File outFile = new File(JOptionPane.showInputDialog("Please enter the name of the savefile: "));
+            File outFile = new File(JOptionPane.showInputDialog("DiagnoseArrayList.data"));
             FileOutputStream   outFileStream = null;
             try {
                 outFileStream = new FileOutputStream(outFile);
             } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null,"File Not Found Exception occurred. See Stack Trace for more info.","File Not Found",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
             ObjectOutputStream outObjectStream = null;
             try {
                 outObjectStream = new ObjectOutputStream(outFileStream);
             } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                outObjectStream.writeObject(pets);
-            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null,"IO Exception occurred. See Stack Trace for more info.","IO Exception",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
             try {
                 outObjectStream.writeObject(diagnoses);
             } catch (IOException e) {
+                JOptionPane.showMessageDialog(null,"IO Exception occurred. See Stack Trace for more info.","IO Exception",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
         });

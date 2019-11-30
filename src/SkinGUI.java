@@ -17,6 +17,15 @@ public class SkinGUI extends JFrame{
     public SkinGUI(Pet pet)
     {
 
+        //Set general JFrame properties
+        setSize(850,850);
+        setTitle("Vitaliti Vet - Diagnose Skin Condition");
+        setVisible(true);
+        setLayout(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocation(500,250);
+        setResizable(false);
+
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
@@ -55,19 +64,19 @@ public class SkinGUI extends JFrame{
         severityGroup.add(severity5);
 
         //create image icons to contain images and assign the icons to a Jlabel for display purposes
-        ImageIcon partHairImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
+        ImageIcon partHairImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
         JLabel partHair = new JLabel(partHairImage);
 
-        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_skintag.jpg");
+        ImageIcon skinTagImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_skintag.jpg");
         JLabel lblSkinTag = new JLabel(skinTagImage);
 
-        ImageIcon cystImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_cyst.jpg");
+        ImageIcon cystImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_cyst.jpg");
         JLabel lblCyst = new JLabel(cystImage);
 
-        ImageIcon fleaImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_flea.jpg");
+        ImageIcon fleaImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_flea.jpg");
         JLabel lblFlea = new JLabel(fleaImage);
 
-        ImageIcon baldingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_balding.jpg");
+        ImageIcon baldingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_balding.jpg");
         JLabel lblBalding = new JLabel(baldingImage);
 
 
@@ -191,14 +200,7 @@ public class SkinGUI extends JFrame{
         });
 
 
-        //Set general JFrame properties
-        setSize(850,850);
-        setTitle("Vitaliti Vet - Diagnose Skin Condition");
-        setVisible(true);
-        setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocation(500,250);
-        setResizable(false);
+
     }
 
 
