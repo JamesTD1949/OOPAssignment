@@ -23,9 +23,12 @@ public class Diagnose implements Serializable {
     }//end of multiple argument constructor
     //accessor and mutator methods
     public int getId() {
+
         return id;
     }
-    private void setID(int id){this.id = id;}
+    private void setID(int id){
+        this.id = id;
+    }
     String getCondition() {
         return condition;
     }

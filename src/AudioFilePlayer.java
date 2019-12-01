@@ -8,7 +8,7 @@ import javafx.scene.media.MediaPlayer;
 //This class is a modified version of the code provided by John Brosnan
 public class AudioFilePlayer{
 
-	MediaPlayer mediaPlayer; //need to declare this reference globally to prevent garbage collector
+	private MediaPlayer mediaPlayer; //need to declare this reference globally to prevent garbage collector
 	                         //from removing it prematurely when play() is called in the playAudio()
 	                         //method, which would stop playing the clip after a few seconds
     public void playAudio(String path)

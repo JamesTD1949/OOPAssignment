@@ -37,7 +37,7 @@ public class MainGUI extends JFrame implements Serializable
         return frame;
     }//end getMainGUIFrame() static method
 
-    MainGUI() {
+    private MainGUI() {
         //set the frame properties
         setTitle("Vitaliti Vet - Home");
         setSize(1100,500);
@@ -220,16 +220,16 @@ public class MainGUI extends JFrame implements Serializable
             DiagnoseMenu = new JMenu("Diagnose");
             item = new JMenuItem("Diagnose");
             //add code inside lambda to check if the number of items in the pets Arraylist is 0 and if not create an instance of the SymptomSelectGUI class, make it visible and make the mainGUI invisible
-            if(pets.size()!=0) {
-                item.addActionListener(event -> {
+            item.addActionListener(event -> {
+                if(pets.size()!=0) {
                     SymptomSelectGUI test = new SymptomSelectGUI();
                     frame.setVisible(false);
                     test.setVisible(true);
-                });
-            }//end if
-            else{
+                }//end if
+                else{
                 JOptionPane.showMessageDialog(null,"There are no pets in the system to Diagnose.","No Pets",JOptionPane.ERROR_MESSAGE);
-            }
+                }
+            });
             DiagnoseMenu.add(item);
             item = new JMenuItem("View Diagnoses");
             //add code inside lambda to check if the number of items in the diagnoses Arraylist is 0 and if not display the items formatted into a tabular fashion
