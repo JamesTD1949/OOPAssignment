@@ -3,25 +3,29 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Diagnose implements Serializable {
-    private static int id;
+    private static int numberOfDiagnoses=0;
     private String condition,date;
-    private int petID,severity;
+    private int petID,severity,id;
+    private SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
     Diagnose(int petID, String condition, int severity)
     {
+        numberOfDiagnoses++;
         setCondition(condition);
         setPetID(petID);
         setSeverity(severity);
         Date today = new Date();
-        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
         date = DATE_FORMAT.format(today);
         setDate(date);
-        id++;
+        id=numberOfDiagnoses;
+        setID(id);
     }
 
-    static int getId() {
+    public int getId() {
         return id;
     }
+
+    private void setID(int id){this.id = id;}
 
     String getCondition() {
         return condition;

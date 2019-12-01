@@ -1,15 +1,16 @@
 import java.io.Serializable;
 
 public class Pet implements Serializable {
-    private static int id;
     private String name,type;
+    private static int id; //autoincrement ID value
+    private int animalID; //JB added code here to fix small issue
 
     Pet(String name, String type) {
+        id++;
         setName(name);
         setType(type);
-        setId(id);
-        id++;
-
+        animalID = id;
+        setId(animalID);
     }
 
     String getName() {
@@ -32,7 +33,7 @@ public class Pet implements Serializable {
         this.type = type;
     }
 
-    private void setId(int id) { Pet.id = id; }
+    private void setId(int id) { this.id = id; }
 
     public String toString() {
         return "Pet ID: " + getId() + " Animal Type: " + getType() + " Name: " + getName();

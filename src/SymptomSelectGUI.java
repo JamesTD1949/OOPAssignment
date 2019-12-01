@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-class SymptomSelectGUI extends JFrame {
+public class SymptomSelectGUI extends JFrame {
     private JComboBox cmbPet, cmbSymptom;
     private String[] petArray;
 
-    SymptomSelectGUI(){
+    public SymptomSelectGUI(){
         //Set general JFrame properties
         setSize(500,500);
         setLocation(500,250);

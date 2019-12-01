@@ -1,13 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javafx.embed.swing.JFXPanel;
 
 public class BreathingGUI extends JFrame{
 
-    private String kennelCoughAudio = "C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing.wav";
-    private String heartFailureAudio = "C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing2.wav";
-    private String fluAudio = "C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\Labrador-breathing.wav";
+    private String kennelCoughAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing.wav";
+    private String heartFailureAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing2.wav";
+    private String fluAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\Labrador-breathing.wav";
     private JRadioButton severity1;
     private JRadioButton severity2;
     private JRadioButton severity3;
@@ -62,7 +61,7 @@ public class BreathingGUI extends JFrame{
         severityGroup.add(severity4);
         severityGroup.add(severity5);
 
-        ImageIcon breathingImage = new ImageIcon("C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_breathing.jpg");
+        ImageIcon breathingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_breathing.jpg");
         JLabel breathing = new JLabel(breathingImage);
 
         //create dimension objects to hold the preferred width and height for the specified components
@@ -185,12 +184,4 @@ public class BreathingGUI extends JFrame{
             return 0;
 
     }
-
-    public static void main(String[] args) {
-        //In order to avoid an "initialization exception" it is necessary to initiate the JavaFX Runtime when the application is started
-        //I am initialising here by creating a "dummy" JFXPanel() object
-        //You MUST add this line of code to your own main() method for your project if you are going to use this class
-        JFXPanel fxPanel = new JFXPanel();
-    }
-
 }

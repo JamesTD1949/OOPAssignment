@@ -1,16 +1,18 @@
+import javafx.embed.swing.JFXPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 
-
 public class MainGUI extends JFrame implements Serializable
 {
+    //Declare attributes
     private JMenu fileMenu,PetsMenu,DiagnoseMenu;
     static ArrayList<Pet> pets = new ArrayList<>();
     private static ArrayList<Diagnose> diagnoses = new ArrayList< >();
     static MainGUI frame;
 
+    //declare two methods to return the contents of the two arraylists
     ArrayList<Pet> getPets()
     {
         return pets;
@@ -20,16 +22,21 @@ public class MainGUI extends JFrame implements Serializable
         return diagnoses;
     }
 
+    //main method
     public static void main(String[] args) {
+        //have to create a 'dummy' JFXPanel here in order to avoid an initialization error in BreathingGUI when any of the audio buttons is pressed
+        JFXPanel fxPanel = new JFXPanel();
+        //create MainGui frame to in order to enable navigation in conjunction with getMainGUIFrame below
         frame = new MainGUI();
         frame.setVisible(true);
-    }
+    }//end of main method
 
+    //user defined method that enables navigation back to MainGui from other GUI classes in conjunction with code above
     static JFrame getMainGUIFrame()
-
     {
         return frame;
-    }
+    }//end getMainGUIFrame() static method
+
     MainGUI() {
         //set the frame properties
         setTitle("Vitaliti Vet - Home");
@@ -42,42 +49,43 @@ public class MainGUI extends JFrame implements Serializable
         // shut down the program when the window is closed
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //Invoke user written functions to create the JMenus and JMenuItems. I placed them into constructors to reduce the amount of code in MainGui's constructor.
+        //Invoke user written functions to create the JMenus and JMenuItems. I placed them into constructors to reduce the amount of code in MainGui's null constructor.
         createFileMenu();
         createPetsMenu();
         createDiagnoseMenu();
+        //Create a JMenuBar and add the menus created above to it
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
         menuBar.add(fileMenu);
         menuBar.add(PetsMenu);
         menuBar.add(DiagnoseMenu);
-    } // end constructor
+    } // end MainGUI null constructor
 
     private void createFileMenu() {
-        JMenuItem    item; // declare a re-usable JMenuItem object
-        // first, create the menu: then you can start on the items
+        // declare a re-usable JMenuItem object
+        JMenuItem    item;
+        //Create Menu before MenuItems
         fileMenu = new JMenu("File");
         // repeat for all the other menu items in the File menu
         item = new JMenuItem("Open Pets");
+        //lambda expression containing event handling code for loading in pets
         item.addActionListener(event -> {
             FileInputStream fis = null;
             ObjectInputStream ois = null;
 
-            try {
-                fis= new FileInputStream("PetArrayList.data");
-            } catch (FileNotFoundException e) {
+            try { fis= new FileInputStream("PetArrayList.data"); }
+            catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            try {
-                ois = new ObjectInputStream(fis);
-            } catch (IOException e) {
+            try { ois = new ObjectInputStream(fis); }
+            catch (IOException e) {
                 e.printStackTrace();
             }
-            ArrayList<Pet> pets = null;
-            try {
-                pets = (ArrayList<Pet>)     ois.readObject();
-            } catch (IOException | ClassNotFoundException e) {
+            //ArrayList<Pet> pets = null;
+            try { assert ois != null;
+                pets = (ArrayList<Pet>) ois.readObject(); }
+            catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
             try {
@@ -146,6 +154,38 @@ public class MainGUI extends JFrame implements Serializable
             }
         });
         fileMenu.add( item );
+        item = new JMenuItem("Open Diagnoses");
+        item.addActionListener(event -> {
+            FileInputStream fis = null;
+            ObjectInputStream ois = null;
+
+            try { fis= new FileInputStream("DiagnoseArrayList.data"); }
+            catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            try { ois = new ObjectInputStream(fis); }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            //ArrayList<Pet> pets = null;
+            try { assert ois != null;
+                diagnoses = (ArrayList<Diagnose>) ois.readObject(); }
+            catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                assert fis != null;
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
 
     }
 
@@ -204,3 +244,5 @@ public class MainGUI extends JFrame implements Serializable
             DiagnoseMenu.add( item );
             } // end createDiagnoseMenu
 } // end class
+
+

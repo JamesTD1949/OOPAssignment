@@ -1,6 +1,4 @@
 //import statements
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -83,6 +81,7 @@ class AddPetGUI extends JFrame{
                         MainGUI f = (MainGUI) MainGUI.getMainGUIFrame();
                         ArrayList<Pet> pets = f.getPets();
                         pets.add(temp);
+                        JOptionPane.showMessageDialog(null, petName.getText() + "has been added to the system.", "Pet Added", JOptionPane.INFORMATION_MESSAGE);
                         }
                     else
                         {
