@@ -1,51 +1,38 @@
 import java.io.Serializable;
-import java.util.Date;
 
 public class Pet implements Serializable {
-    private static int id=0;
+    private static int id;
     private String name,type;
-    //private Date dob;
 
-    public Pet(String name, String type) {
+    Pet(String name, String type) {
         setName(name);
         setType(type);
-        //setDOB(dob);
         setId(id);
         id++;
 
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public String getType() {
+    String getType() {
         return type;
     }
 
-    /*public Date getDOB() {
-        return dob;
-    }*/
-
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public void setType(String type) {
+    private void setType(String type) {
         this.type = type;
     }
 
-    /*public void setDOB(Date dob) {
-        this.dob = dob;
-    }*/
-
-    public static void setId(int id) {
-        Pet.id = id;
-    }
+    private void setId(int id) { Pet.id = id; }
 
     public String toString() {
         return "Pet ID: " + getId() + " Animal Type: " + getType() + " Name: " + getName();

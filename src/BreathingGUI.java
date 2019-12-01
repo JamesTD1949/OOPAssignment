@@ -1,18 +1,9 @@
-
-
-import javafx.scene.media.MediaPlayer;
-
-import javax.print.attribute.standard.Media;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
-
 import javafx.embed.swing.JFXPanel;
 
 public class BreathingGUI extends JFrame{
-
 
     private String kennelCoughAudio = "C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing.wav";
     private String heartFailureAudio = "C:\\Users\\t00192739\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing2.wav";
@@ -26,26 +17,23 @@ public class BreathingGUI extends JFrame{
     private JRadioButton heartFailure;
     private JRadioButton flu;
 
-    public BreathingGUI(Pet pet) {
+    BreathingGUI(Pet pet) {
         setSize(650, 600);
         setTitle("Vitaliti Vet - Diagnose Breathing Condition");
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocation(500, 250);
         setResizable(false);
-
+        setVisible(true);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
-
         JMenu backM = new JMenu("Navigation");
         menuBar.add(backM);
         JMenuItem back = new JMenuItem("Back");
         backM.add(back);
         back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
-
-
 
         //define the components declared above
         JLabel severity = new JLabel("Severity(low to high):");
@@ -82,7 +70,6 @@ public class BreathingGUI extends JFrame{
         Dimension radio = kennelCough.getPreferredSize();
         Dimension image = breathing.getPreferredSize();
 
-
         //set the locations and dimensions of the components using the dimensions created above
         breathing.setBounds(200, 30, image.width, image.height);
         kennelCough.setBounds(50, 250, radio.width, radio.height);
@@ -98,7 +85,6 @@ public class BreathingGUI extends JFrame{
         severity4.setBounds(470, 400, radio.width, radio.height);
         severity5.setBounds(570, 400, radio.width, radio.height);
         diagnose.setBounds(225, 450, 200, 45);
-
 
         //add the components to the JFrame
         add(severity);
@@ -118,14 +104,9 @@ public class BreathingGUI extends JFrame{
 
         AudioFilePlayer player = new AudioFilePlayer();
 
-        kennelCoughPlay.addActionListener(event -> {
-             player.playAudio(kennelCoughAudio);});
-
-        heartFailurePlay.addActionListener(event -> {
-            player.playAudio(heartFailureAudio); });
-
-        fluPlay.addActionListener(event -> {
-            player.playAudio(fluAudio); });
+        kennelCoughPlay.addActionListener(event -> player.playAudio(kennelCoughAudio));
+        heartFailurePlay.addActionListener(event -> player.playAudio(heartFailureAudio));
+        fluPlay.addActionListener(event -> player.playAudio(fluAudio));
 
         diagnose.addActionListener(event -> {
                     MainGUI f = (MainGUI) MainGUI.getMainGUIFrame();
@@ -139,7 +120,7 @@ public class BreathingGUI extends JFrame{
                             case "Kennel Cough":
                                 if (getSeverity() < 3)
                                     JOptionPane.showMessageDialog(null, "Keep in overnight and administer fluids via IV Drip.");
-                                if (getSeverity() == 3)
+                                else if (getSeverity() == 3)
                                     JOptionPane.showMessageDialog(null, "Administer Azithromycin and keep in overnight.");
                                 else
                                     JOptionPane.showMessageDialog(null, "Administer Doxycycline and keep in overnight..");
@@ -147,7 +128,7 @@ public class BreathingGUI extends JFrame{
                             case "Heart Failure":
                                 if (getSeverity() < 3)
                                     JOptionPane.showMessageDialog(null, "Take no action but moniter closely -- readmit immiedietly if symptoms worsen.");
-                                if (getSeverity() == 3)
+                                else if (getSeverity() == 3)
                                     JOptionPane.showMessageDialog(null, "Give Pet oxygen therapy to improve circulation.");
                                 else
                                     JOptionPane.showMessageDialog(null, "Schedule Heart Surgery to remove fluids from chest.");
@@ -155,7 +136,7 @@ public class BreathingGUI extends JFrame{
                             case "Flu":
                                 if (getSeverity() < 3)
                                     JOptionPane.showMessageDialog(null, "Give plenty of water and bring back if not better in two weeks for flu shot.");
-                                if (getSeverity() == 3)
+                                else if (getSeverity() == 3)
                                     JOptionPane.showMessageDialog(null, "Give antibiotic to clear airways and bring back in 3 days.");
                                 else
                                     JOptionPane.showMessageDialog(null, "Keep overnight and administer fluids via IP Drip.");
@@ -166,38 +147,29 @@ public class BreathingGUI extends JFrame{
                         }
                         Diagnose temp = new Diagnose(pet.getId(),getBreathingText(),getSeverity());
                         diagnoses.add(temp);
-                        String output="";
+                        StringBuilder output= new StringBuilder();
                         for(Diagnose d:diagnoses)
-                        {
-                            output+=d.toString();
-                        }
-
-
-
+                            {
+                            output.append(d.toString());
+                            }
                         System.out.print(output);
-                    }
+                        }
                     });
-
-
-
-        //Set general JFrame properties
-        setVisible(true);
-
     }
 
-                private String getBreathingText()
-                {
-                    if(kennelCough.isSelected())
-                        return kennelCough.getText();
-                    else if(flu.isSelected())
-                        return flu.getText();
-                    else if(heartFailure.isSelected())
-                        return heartFailure.getText();
-                    else
-                        return "None";
+    private String getBreathingText()
+    {
+        if(kennelCough.isSelected())
+            return kennelCough.getText();
+        else if(flu.isSelected())
+            return flu.getText();
+        else if(heartFailure.isSelected())
+            return heartFailure.getText();
+        else
+            return "None";
                 }
 
-    public int getSeverity()
+    private int getSeverity()
     {
         if(severity1.isSelected())
             return 1;
@@ -214,14 +186,10 @@ public class BreathingGUI extends JFrame{
 
     }
 
-
-
     public static void main(String[] args) {
-
         //In order to avoid an "initialization exception" it is necessary to initiate the JavaFX Runtime when the application is started
         //I am initialising here by creating a "dummy" JFXPanel() object
         //You MUST add this line of code to your own main() method for your project if you are going to use this class
-
         JFXPanel fxPanel = new JFXPanel();
     }
 

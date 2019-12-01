@@ -1,48 +1,36 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class SymptomSelectGUI extends JFrame {
-    private JMenu back;
-    private JLabel lblSelect,lblSymptom;
+class SymptomSelectGUI extends JFrame {
     private JComboBox cmbPet, cmbSymptom;
-    private JButton btnDiagnose;
     private String[] petArray;
-    private String[] symptoms = {"Cough","Skin Problem"};
 
-    private void populateArray(){
-        petArray = new String[MainGUI.pets.size()];
-        for(int i=0;i<MainGUI.pets.size();i++)
-        {
-
-            String name =  MainGUI.pets.get(i).getName();
-            System.out.println(name);
-            petArray[i] = name;
-        }
-    }
-
-    public SymptomSelectGUI(){
+    SymptomSelectGUI(){
+        //Set general JFrame properties
+        setSize(500,500);
+        setLocation(500,250);
+        setTitle("Vitaliti Vet - Select Symptom");
+        setLayout(null);
 
         populateArray();
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
-
         JMenu backM = new JMenu("Navigation");
         menuBar.add(backM);
         JMenuItem back = new JMenuItem("Back");
         backM.add(back);
 
-
         back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
 
-
-
+        //Create an array of String to hold values for Symptoms combo box
+        String[] symptoms = {"Cough","Skin Problem"};
         //define the components declared above
-        lblSelect = new JLabel("Select Pet:");
-        lblSymptom= new JLabel("Select Symptom:");
+        JLabel lblSelect = new JLabel("Select Pet:");
+        JLabel lblSymptom= new JLabel("Select Symptom:");
         cmbPet = new JComboBox(petArray);
         cmbSymptom = new JComboBox(symptoms);
-        btnDiagnose = new JButton("Submit");
+        JButton btnDiagnose = new JButton("Submit");
 
         //create dimension objects to hold the preferred width and height for the specified components
         Dimension dSelect = lblSelect.getPreferredSize();
@@ -64,50 +52,25 @@ public class SymptomSelectGUI extends JFrame {
         add(cmbSymptom);
         add(btnDiagnose);
 
-
-        //Set general JFrame properties
-        setSize(500,500);
-        setLocation(500,250);
-        setTitle("Vitaliti Vet - Select Symptom");
-        setLayout(null);
-
         btnDiagnose.addActionListener(event -> {
-            /*if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
-            {
-                SkinGUI dogSkin = new SkinGUI(1,"Peach","dog");
-                this.setVisible(false);
-                dogSkin.setVisible(true);
-            }
-            else if(cmbPet.getSelectedIndex()==1 && cmbSymptom.getSelectedIndex()==1)
-            {
-                SkinGUI catSkin = new SkinGUI(2,"Oscar","cat");
-                this.setVisible(false);
-                catSkin.setVisible(true);
-            }
-            else if(cmbPet.getSelectedIndex()==0 && cmbSymptom.getSelectedIndex()==1)
-            {
-                BreathingGUI breathingDog = new BreathingGUI(1,"Peach","dog");
-                this.setVisible(false);
-                breathingDog.setVisible(true);
-            }
-            else if(cmbPet.getSelectedIndex()==1 && cmbSymptom.getSelectedIndex()==1)
-            {
-                BreathingGUI breathingCat = new BreathingGUI(2,"Oscar","cat");
-                this.setVisible(false);
-                breathingCat.setVisible(true);
-            } */
-
             if(cmbSymptom.getSelectedIndex()==0)
             {
-                BreathingGUI nextFrame = new BreathingGUI(MainGUI.pets.get(cmbPet.getSelectedIndex()));
+                new BreathingGUI(MainGUI.pets.get(cmbPet.getSelectedIndex()));
             }
             else
             {
-                SkinGUI nextFrame = new SkinGUI(MainGUI.pets.get(cmbPet.getSelectedIndex()));
+                new SkinGUI(MainGUI.pets.get(cmbPet.getSelectedIndex()));
             }
-
-
         });
+    }
 
+    private void populateArray(){
+        petArray = new String[MainGUI.pets.size()];
+        for(int i=0;i<MainGUI.pets.size();i++)
+        {
+            String name =  MainGUI.pets.get(i).getName();
+            System.out.println(name);
+            petArray[i] = name;
+        }
     }
 }

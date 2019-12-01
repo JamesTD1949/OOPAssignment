@@ -1,9 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SkinGUI extends JFrame{
+class SkinGUI extends JFrame{
     private JRadioButton skinTag;
     private JRadioButton cyst;
     private JRadioButton flea;
@@ -14,7 +13,7 @@ public class SkinGUI extends JFrame{
     private JRadioButton severity4;
     private JRadioButton severity5;
 
-    public SkinGUI(Pet pet)
+    SkinGUI(Pet pet)
     {
 
         //Set general JFrame properties
@@ -29,13 +28,11 @@ public class SkinGUI extends JFrame{
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
-
         JMenu backM = new JMenu("Navigation");
         menuBar.add(backM);
         JMenuItem back = new JMenuItem("Back");
         backM.add(back);
         back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
-
 
         //define the components declared above
         JLabel severity = new JLabel("Severity(low to high):");
@@ -66,27 +63,20 @@ public class SkinGUI extends JFrame{
         //create image icons to contain images and assign the icons to a Jlabel for display purposes
         ImageIcon partHairImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
         JLabel partHair = new JLabel(partHairImage);
-
         ImageIcon skinTagImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_skintag.jpg");
         JLabel lblSkinTag = new JLabel(skinTagImage);
-
         ImageIcon cystImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_cyst.jpg");
         JLabel lblCyst = new JLabel(cystImage);
-
         ImageIcon fleaImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_flea.jpg");
         JLabel lblFlea = new JLabel(fleaImage);
-
         ImageIcon baldingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_balding.jpg");
         JLabel lblBalding = new JLabel(baldingImage);
-
-
 
         //create dimension objects to hold the preferred width and height for the specified components
         Dimension label = severity.getPreferredSize();
         Dimension radio = skinTag.getPreferredSize();
         Dimension imagePartHair = partHair.getPreferredSize();
         Dimension image = lblSkinTag.getPreferredSize();
-
 
         //set the locations and dimensions of the components using the dimensions created above
         severity.setBounds(50,600,label.width,label.height);
@@ -103,10 +93,8 @@ public class SkinGUI extends JFrame{
         partHair.setBounds(60,30,imagePartHair.width,imagePartHair.height);
         lblSkinTag.setBounds(50,350,image.width,image.height);
         lblCyst.setBounds(250,350,image.width,image.height);
-        lblFlea.setBounds(450,350,image.width,image.height);                   //ISSUE HERE ISSUE HERE
+        lblFlea.setBounds(450,350,image.width,image.height);
         lblBalding.setBounds(650,350,image.width,image.height);
-
-
 
         //add the components to the JFrame
         add(severity);
@@ -125,9 +113,6 @@ public class SkinGUI extends JFrame{
         add(lblCyst);
         add(lblBalding);
         add(lblFlea);
-
-
-
 
         diagnose.addActionListener(event -> {
             MainGUI f = (MainGUI) MainGUI.getMainGUIFrame();
@@ -179,30 +164,18 @@ public class SkinGUI extends JFrame{
                     default:
                         JOptionPane.showMessageDialog(null,"This message should never be seen.");
                         break;
-
-
-
                 }
                 Diagnose temp = new Diagnose(pet.getId(),getSkinText(),getSeverity());
                 diagnoses.add(temp);
-                String output="";
+                StringBuilder output= new StringBuilder();
                 for(Diagnose d:diagnoses)
                 {
-                    output+=d.toString();
+                    output.append(d.toString());
                 }
-
-
-
                 System.out.print(output);
             }
-
-
         });
-
-
-
     }
-
 
     private String getSkinText()
     {
@@ -232,7 +205,6 @@ public class SkinGUI extends JFrame{
             return 5;
         else
             return 0;
-
     }
 
 }
