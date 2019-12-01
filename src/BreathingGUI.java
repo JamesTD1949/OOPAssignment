@@ -1,9 +1,10 @@
+//import statements
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class BreathingGUI extends JFrame{
-
+    //declare attributes
     private String kennelCoughAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing.wav";
     private String heartFailureAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\pug-breathing2.wav";
     private String fluAudio = "C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\Labrador-breathing.wav";
@@ -17,6 +18,7 @@ public class BreathingGUI extends JFrame{
     private JRadioButton flu;
 
     BreathingGUI(Pet pet) {
+        //general JFrame properties
         setSize(650, 600);
         setTitle("Vitaliti Vet - Diagnose Breathing Condition");
         setLayout(null);
@@ -24,7 +26,7 @@ public class BreathingGUI extends JFrame{
         setLocation(500, 250);
         setResizable(false);
         setVisible(true);
-
+        //code responsible for JMenuBar and navigation back to MainGUI
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
@@ -33,8 +35,7 @@ public class BreathingGUI extends JFrame{
         JMenuItem back = new JMenuItem("Back");
         backM.add(back);
         back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
-
-        //define the components declared above
+        //define the components needed on the JFrame
         JLabel severity = new JLabel("Severity(low to high):");
         JButton diagnose = new JButton("Diagnose");
         severity1 = new JRadioButton("1");
@@ -48,27 +49,25 @@ public class BreathingGUI extends JFrame{
         JButton kennelCoughPlay = new JButton("Play Kennel Cough");
         JButton heartFailurePlay = new JButton("Play Heart Failure Cough");
         JButton fluPlay = new JButton("Play Flu Cough");
-
+        //define a buttonGroup so only one Condition radio button can be selected
         ButtonGroup condition = new ButtonGroup();
         condition.add(kennelCough);
         condition.add(heartFailure);
         condition.add(flu);
-
+        //define a buttonGroup so only one Severity radio button can be selected
         ButtonGroup severityGroup = new ButtonGroup();
         severityGroup.add(severity1);
         severityGroup.add(severity2);
         severityGroup.add(severity3);
         severityGroup.add(severity4);
         severityGroup.add(severity5);
-
+        //Code responsible for displaying the image at the top of the page - create an Imageicon and then assign it to a JLabel. Use pet.getType() in the naming scheme to ensure the appropriate image displays based on the type of pet being examined
         ImageIcon breathingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_breathing.jpg");
         JLabel breathing = new JLabel(breathingImage);
-
         //create dimension objects to hold the preferred width and height for the specified components
         Dimension label = severity.getPreferredSize();
         Dimension radio = kennelCough.getPreferredSize();
         Dimension image = breathing.getPreferredSize();
-
         //set the locations and dimensions of the components using the dimensions created above
         breathing.setBounds(200, 30, image.width, image.height);
         kennelCough.setBounds(50, 250, radio.width, radio.height);
@@ -84,7 +83,6 @@ public class BreathingGUI extends JFrame{
         severity4.setBounds(470, 400, radio.width, radio.height);
         severity5.setBounds(570, 400, radio.width, radio.height);
         diagnose.setBounds(225, 450, 200, 45);
-
         //add the components to the JFrame
         add(severity);
         add(diagnose);
@@ -100,21 +98,25 @@ public class BreathingGUI extends JFrame{
         add(kennelCoughPlay);
         add(heartFailurePlay);
         add(fluPlay);
-
+        //create an instance of the AudioFilePlayer class
         AudioFilePlayer player = new AudioFilePlayer();
-
+        //use the playAudio function located in the AudioFilePlayer class in conjunction with the lambda expression to enable the playing of audio once the button is pressed
         kennelCoughPlay.addActionListener(event -> player.playAudio(kennelCoughAudio));
         heartFailurePlay.addActionListener(event -> player.playAudio(heartFailureAudio));
         fluPlay.addActionListener(event -> player.playAudio(fluAudio));
-
+        /*lambda expression that contains event handling code for diagnose button
+        first check that both buttonGroups have an option selected and then output the correct response based on the combination,
+        create an instance of the diagnose class and add it to the diagnose arraylist located in MainGUI */
         diagnose.addActionListener(event -> {
                     MainGUI f = (MainGUI) MainGUI.getMainGUIFrame();
                     ArrayList<Diagnose> diagnoses = f.getDiagnoses();
                     if (getBreathingText().equals("None")) {
                         JOptionPane.showMessageDialog(null, "No Breathing Condition Selected", "Selection Error", JOptionPane.ERROR_MESSAGE);
-                    } else if (getSeverity() == 0) {
+                    } //end if
+                    else if (getSeverity() == 0) {
                         JOptionPane.showMessageDialog(null, "No Severity Selected", "Selection Error", JOptionPane.ERROR_MESSAGE);
-                    } else {
+                    } //end else if
+                    else {
                         switch (getBreathingText()) {
                             case "Kennel Cough":
                                 if (getSeverity() < 3)
@@ -143,19 +145,21 @@ public class BreathingGUI extends JFrame{
                             default:
                                 JOptionPane.showMessageDialog(null, "This message should never be seen.");
                                 break;
-                        }
-                        Diagnose temp = new Diagnose(pet.getId(),getBreathingText(),getSeverity());
+                        }//end switch
+                        Diagnose temp = new Diagnose(pet.getId(), getBreathingText(), getSeverity());
                         diagnoses.add(temp);
+                        /*
                         StringBuilder output= new StringBuilder();
                         for(Diagnose d:diagnoses)
                             {
                             output.append(d.toString());
                             }
                         System.out.print(output);
-                        }
-                    });
-    }
-
+                        */
+                    }//end else
+        });//end lambda
+    }//end single argument constructor
+    //basic user defined function to return the text of the selected radio button belonging to the condition ButtonGroup
     private String getBreathingText()
     {
         if(kennelCough.isSelected())
@@ -166,8 +170,8 @@ public class BreathingGUI extends JFrame{
             return heartFailure.getText();
         else
             return "None";
-                }
-
+    }//end getBreathingText()
+    //basic user defined function to return the value of the selected radio button belonging to the severity ButtonGroup
     private int getSeverity()
     {
         if(severity1.isSelected())
@@ -183,5 +187,5 @@ public class BreathingGUI extends JFrame{
         else
             return 0;
 
-    }
-}
+    }//end of getSeverity()
+}//end of BreathingGUI class

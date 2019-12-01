@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 class AddPetGUI extends JFrame{
+    //declare attributes
     private JTextField petName;
     private JComboBox petType;
 
@@ -17,7 +18,7 @@ class AddPetGUI extends JFrame{
         setVisible(true);
         setLocation(500,250);
         setResizable(false);
-
+        //declare and set up menu bar to navigate back to main Menu Gui
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
@@ -30,7 +31,7 @@ class AddPetGUI extends JFrame{
 
         //Create an array of Strings to hold the petOptions for the pet type combo box -- only two due to time constraints
         String[] petOptions = {"dog","cat"};
-        //define the components declared above
+        //define the components needed for the JFrame
         JLabel name = new JLabel("Pet Name:");
         JLabel type = new JLabel("Pet Type:");
         petName = new JTextField("");
@@ -56,13 +57,14 @@ class AddPetGUI extends JFrame{
         add(petName);
         add(petType);
         add(submit);
-
+        //lambda function containing input validation - first make sure the pet name textbox wasn't empty, then check that only alphabetical characters were entered.
+        //If both conditions pass, create an instance of the pet class with the entered details and add it to the pets arraylist located in MainGUI
         submit.addActionListener(event -> {
             int i;
             System.out.println("The text in pet textfield is: " + petName.getText());
                 if (petName.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Pet name field must be entered.", "No Pet Name", JOptionPane.ERROR_MESSAGE);
-                }
+                }//end if
                 else{
                     for(i=0;i<petName.getText().length();)
                     {
@@ -73,7 +75,7 @@ class AddPetGUI extends JFrame{
                         if(!Character.isLetter(c))
                             { break; }
                         i++;
-                    }
+                    }//end for loop
                     if(i==petName.getText().length())
                         {
                         Pet temp = new Pet(petName.getText(), Objects.requireNonNull(petType.getSelectedItem()).toString());
@@ -82,14 +84,13 @@ class AddPetGUI extends JFrame{
                         ArrayList<Pet> pets = f.getPets();
                         pets.add(temp);
                         JOptionPane.showMessageDialog(null, petName.getText() + "has been added to the system.", "Pet Added", JOptionPane.INFORMATION_MESSAGE);
-                        }
+                        }//end if
                     else
                         {
                         JOptionPane.showMessageDialog(null, "Pet name field can only contain letters.", "Invalid Pet Name", JOptionPane.ERROR_MESSAGE);
-                        }
+                        }//end else
 
-                    }
-        });
-
-    }
-}
+                    }//end else
+        });//end lambda
+    }//end null constructor
+}//end of AddPetGUI class

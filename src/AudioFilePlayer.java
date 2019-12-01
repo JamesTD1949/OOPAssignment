@@ -5,7 +5,7 @@
 import java.io.File;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
+//This class is a modified version of the code provided by John Brosnan
 public class AudioFilePlayer{
 
 	MediaPlayer mediaPlayer; //need to declare this reference globally to prevent garbage collector

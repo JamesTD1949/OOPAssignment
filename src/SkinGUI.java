@@ -1,8 +1,10 @@
+//import statements
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 class SkinGUI extends JFrame{
+    //declare attributes
     private JRadioButton skinTag;
     private JRadioButton cyst;
     private JRadioButton flea;
@@ -15,7 +17,6 @@ class SkinGUI extends JFrame{
 
     SkinGUI(Pet pet)
     {
-
         //Set general JFrame properties
         setSize(850,850);
         setTitle("Vitaliti Vet - Diagnose Skin Condition");
@@ -24,7 +25,7 @@ class SkinGUI extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocation(500,250);
         setResizable(false);
-
+        //code responsible for JMenuBar and navigation back to MainGUI
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(new Color(115,170,10));
@@ -33,8 +34,7 @@ class SkinGUI extends JFrame{
         JMenuItem back = new JMenuItem("Back");
         backM.add(back);
         back.addActionListener(event -> {this.setVisible(false); MainGUI.frame.setVisible(true);});
-
-        //define the components declared above
+        //define the components needed on the JFrame
         JLabel severity = new JLabel("Severity(low to high):");
         JButton diagnose = new JButton("Diagnose");
         skinTag = new JRadioButton("Skin Tag");
@@ -46,20 +46,19 @@ class SkinGUI extends JFrame{
         severity3 = new JRadioButton("3");
         severity4 = new JRadioButton("4");
         severity5 = new JRadioButton("5");
-
+        //define a buttonGroup so only one Condition radio button can be selected
         ButtonGroup condition = new ButtonGroup();
         condition.add(skinTag);
         condition.add(cyst);
         condition.add(flea);
         condition.add(balding);
-
+        //define a buttonGroup so only one Severity radio button can be selected
         ButtonGroup severityGroup = new ButtonGroup();
         severityGroup.add(severity1);
         severityGroup.add(severity2);
         severityGroup.add(severity3);
         severityGroup.add(severity4);
         severityGroup.add(severity5);
-
         //create image icons to contain images and assign the icons to a Jlabel for display purposes
         ImageIcon partHairImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\check_dogskin.jpg");
         JLabel partHair = new JLabel(partHairImage);
@@ -71,13 +70,11 @@ class SkinGUI extends JFrame{
         JLabel lblFlea = new JLabel(fleaImage);
         ImageIcon baldingImage = new ImageIcon("C:\\Users\\johnd\\IdeaProjects\\OOPAssignment\\Images+Sounds\\" + pet.getType() + "_balding.jpg");
         JLabel lblBalding = new JLabel(baldingImage);
-
         //create dimension objects to hold the preferred width and height for the specified components
         Dimension label = severity.getPreferredSize();
         Dimension radio = skinTag.getPreferredSize();
         Dimension imagePartHair = partHair.getPreferredSize();
         Dimension image = lblSkinTag.getPreferredSize();
-
         //set the locations and dimensions of the components using the dimensions created above
         severity.setBounds(50,600,label.width,label.height);
         diagnose.setBounds(300,700,200,50);
@@ -95,7 +92,6 @@ class SkinGUI extends JFrame{
         lblCyst.setBounds(250,350,image.width,image.height);
         lblFlea.setBounds(450,350,image.width,image.height);
         lblBalding.setBounds(650,350,image.width,image.height);
-
         //add the components to the JFrame
         add(severity);
         add(diagnose);
@@ -113,18 +109,20 @@ class SkinGUI extends JFrame{
         add(lblCyst);
         add(lblBalding);
         add(lblFlea);
-
+        /*lambda expression that contains event handling code for diagnose button
+        first check that both buttonGroups have an option selected and then output the correct response based on the combination,
+        create an instance of the diagnose class and add it to the diagnose arraylist located in MainGUI */
         diagnose.addActionListener(event -> {
             MainGUI f = (MainGUI) MainGUI.getMainGUIFrame();
             ArrayList<Diagnose> diagnoses = f.getDiagnoses();
             if(getSkinText().equals("None"))
             {
                 JOptionPane.showMessageDialog(null,"No Skin Condition Selected","Selection Error",JOptionPane.ERROR_MESSAGE);
-            }
+            }//end if
             else if(getSeverity()==0)
             {
                 JOptionPane.showMessageDialog(null,"No Severity Selected","Selection Error",JOptionPane.ERROR_MESSAGE);
-            }
+            }//end else if
             else
             {
                 switch (getSkinText())
@@ -164,19 +162,21 @@ class SkinGUI extends JFrame{
                     default:
                         JOptionPane.showMessageDialog(null,"This message should never be seen.");
                         break;
-                }
+                }//end switch
                 Diagnose temp = new Diagnose(pet.getId(),getSkinText(),getSeverity());
                 diagnoses.add(temp);
+                /* Debug code I left in to show my logic
                 StringBuilder output= new StringBuilder();
                 for(Diagnose d:diagnoses)
                 {
                     output.append(d.toString());
                 }
                 System.out.print(output);
-            }
-        });
-    }
-
+                 */
+            }//end else
+        });//end lambda
+    }//end single argument constructor
+    //basic user defined function to return the text of the selected radio button belonging to the condition ButtonGroup
     private String getSkinText()
     {
         if(skinTag.isSelected())
@@ -189,8 +189,8 @@ class SkinGUI extends JFrame{
             return balding.getText();
         else
             return "None";
-    }
-
+    }//end getSkinText()
+    //basic user defined function to return the value of the selected radio button belonging to the severity ButtonGroup
     private int getSeverity()
     {
         if(severity1.isSelected())
@@ -205,6 +205,5 @@ class SkinGUI extends JFrame{
             return 5;
         else
             return 0;
-    }
-
-}
+    }//end getSeverity()
+}//endSkinGUI class

@@ -62,9 +62,10 @@ public class MainGUI extends JFrame implements Serializable
         menuBar.add(DiagnoseMenu);
     } // end MainGUI null constructor
 
+    //constructor for file menu that contains save and open options for the two arraylists
     private void createFileMenu() {
         // declare a re-usable JMenuItem object
-        JMenuItem    item;
+        JMenuItem item;
         //Create Menu before MenuItems
         fileMenu = new JMenu("File");
         // repeat for all the other menu items in the File menu
@@ -82,7 +83,6 @@ public class MainGUI extends JFrame implements Serializable
             catch (IOException e) {
                 e.printStackTrace();
             }
-            //ArrayList<Pet> pets = null;
             try { assert ois != null;
                 pets = (ArrayList<Pet>) ois.readObject(); }
             catch (IOException | ClassNotFoundException e) {
@@ -100,8 +100,8 @@ public class MainGUI extends JFrame implements Serializable
                 e.printStackTrace();
             }
 
-        });
-        fileMenu.add( item );
+        });//end of lambda expression
+        fileMenu.add( item ); //Add Open Pets to FileMenu
         item = new JMenuItem("Save Pets");
         item.addActionListener(event -> {
             File outFile = new File("PetArrayList.data");
@@ -126,11 +126,11 @@ public class MainGUI extends JFrame implements Serializable
                 JOptionPane.showMessageDialog(null,"IO Exception occurred. See Stack Trace for more info.","IO Exception",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
-        });
-        fileMenu.add( item );
+        });//end of lambda
+        fileMenu.add( item ); //Add Save Pets to File Menu
         item = new JMenuItem("Save Diagnoses");
-        item.addActionListener(event ->{
-            File outFile = new File(JOptionPane.showInputDialog("DiagnoseArrayList.data"));
+        item.addActionListener(event -> {
+            File outFile = new File("DiagnoseArrayList.data");
             FileOutputStream   outFileStream = null;
             try {
                 outFileStream = new FileOutputStream(outFile);
@@ -152,13 +152,12 @@ public class MainGUI extends JFrame implements Serializable
                 JOptionPane.showMessageDialog(null,"IO Exception occurred. See Stack Trace for more info.","IO Exception",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
-        });
-        fileMenu.add( item );
+        }); //end of lambda
+        fileMenu.add( item ); //add save diagnoses to file menu
         item = new JMenuItem("Open Diagnoses");
         item.addActionListener(event -> {
             FileInputStream fis = null;
             ObjectInputStream ois = null;
-
             try { fis= new FileInputStream("DiagnoseArrayList.data"); }
             catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -167,7 +166,6 @@ public class MainGUI extends JFrame implements Serializable
             catch (IOException e) {
                 e.printStackTrace();
             }
-            //ArrayList<Pet> pets = null;
             try { assert ois != null;
                 diagnoses = (ArrayList<Diagnose>) ois.readObject(); }
             catch (IOException | ClassNotFoundException e) {
@@ -184,22 +182,23 @@ public class MainGUI extends JFrame implements Serializable
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-        });
-
+        });//end of lambda
+        fileMenu.add(item);//add Open Diagnoses to File Menu
     }
 
     private void createPetsMenu() {
-        JMenuItem    item;
+        JMenuItem item;
         PetsMenu = new JMenu("Pets");
         item = new JMenuItem("Add Pet");
-         item.addActionListener(event -> {
+        //add code inside lambda to create an instance of the AddPetUI class, make it visible and make the mainGUI invisible
+        item.addActionListener(event -> {
             AddPetGUI test = new AddPetGUI();
             frame.setVisible(false);
             test.setVisible(true);
         });
         PetsMenu.add( item );
         item = new JMenuItem("View Pets");
+        //add code inside lambda to check if the number of items in the pets Arraylist is 0 and if not display the items formatted into a tabular fashion
         item.addActionListener(event -> {
             if(pets.size()!=0) {
                 StringBuilder output = new StringBuilder(String.format("%-30s%-30s%-30s\n%-35s%-35s%-35s\n", "Pet ID", "Pet Name", "Pet Type", "--------", "--------------", "------------"));
@@ -220,13 +219,20 @@ public class MainGUI extends JFrame implements Serializable
             JMenuItem    item;
             DiagnoseMenu = new JMenu("Diagnose");
             item = new JMenuItem("Diagnose");
-            item.addActionListener(event -> {
-                SymptomSelectGUI test = new SymptomSelectGUI();
-                frame.setVisible(false);
-                test.setVisible(true);
-            });
+            //add code inside lambda to check if the number of items in the pets Arraylist is 0 and if not create an instance of the SymptomSelectGUI class, make it visible and make the mainGUI invisible
+            if(pets.size()!=0) {
+                item.addActionListener(event -> {
+                    SymptomSelectGUI test = new SymptomSelectGUI();
+                    frame.setVisible(false);
+                    test.setVisible(true);
+                });
+            }//end if
+            else{
+                JOptionPane.showMessageDialog(null,"There are no pets in the system to Diagnose.","No Pets",JOptionPane.ERROR_MESSAGE);
+            }
             DiagnoseMenu.add(item);
             item = new JMenuItem("View Diagnoses");
+            //add code inside lambda to check if the number of items in the diagnoses Arraylist is 0 and if not display the items formatted into a tabular fashion
             item.addActionListener(event -> {
                 if(diagnoses.size()!=0) {
                     StringBuilder output = new StringBuilder(String.format("%-25s%-30s%-30s%-30s%-30s\n%-30s%-35s%-34s%-35s%-35s\n", "Diagnosis ID", "Condition", "Severity", "Pet ID", "Date", "-------------------", "--------------", "------------", "---------", "-------"));
